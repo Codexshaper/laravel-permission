@@ -1,19 +1,19 @@
 # laravel-permission
 Laravel Multi Authentication
 
-# Install the Package
+#Install the Package
 
 ```
 composer require codexshaper/laravel-permission
 ```
-# Publish Resource, Configs, Migration and Seeding Database
+#Publish Resource, Configs, Migration and Seeding Database
 
 ```
 php artisan permission:install
 ```
-# Import `use CodexShaper\Permission\Traits\HasRoles` or simply `use HasRoles` Trait into your `App\User` Model
+#Import `use CodexShaper\Permission\Traits\HasRoles` or simply `use HasRoles` Trait into your `App\User` Model
 
-# Example
+#Example
 ```
 namespace App;
 
@@ -27,7 +27,7 @@ class User extends Authenticatable
     use Notifiable, **HasRoles**;
 }
 ```
-# Applly Rules on Route
+#Applly Rules on Route
 
 ```
 Route::group(['middleware'=>['role:admin|manager']],function(){
