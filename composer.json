@@ -1,0 +1,33 @@
+{
+    "name": "codexshaper/laravel-permission",
+    "description": "Laravel Multiple Authentication",
+    "type": "library",
+    "require": {},
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Md Abu Ahsan Basir",
+            "email": "maab.career@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "CodexShaper\\Permission\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CodexShaper\\Permission\\PermissionServiceProvider"
+            ],
+            "aliases": {
+                "PermissionFacade": "CodexShaper\\Permission\\Facades\\Permission",
+                "Role": "CodexShaper\\Permission\\Models\\Role",
+                "Permission": "CodexShaper\\Permission\\Models\\Permission",
+                "HasRoles": "CodexShaper\\Permission\\Traits\\HasRoles",
+                "HasPermissions": "CodexShaper\\Permission\\Traits\\HasPermissions"
+            }
+        }
+    }
+}
