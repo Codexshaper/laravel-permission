@@ -24,7 +24,11 @@ php artisan vendor:publish --tag=permission.seeds
 ```
 php artisan migrate
 ```
-4. Seeding Database
+4. Run composer dump autoload
+```
+composer dump-autoload
+```
+5. Seeding Database
 ```
 php artisan db:seed --class=PermissionDatabaseSeeder
 ```
