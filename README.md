@@ -6,11 +6,30 @@ Laravel Multi Authentication
 ```
 composer require codexshaper/laravel-permission
 ```
-#Publish Resource, Configs, Migration and Seeding Database
+#Publish Resource, Configs, Migration and Seeding Database in a single command
 
 ```
 php artisan permission:install
 ```
+<!--
+#Or Publish Resource, Configs, Migration and Seeding Database Manually
+1. Publish Configs
+```
+php artisan vendor:publish --tag=permission.config
+```
+2. Publish Seeds
+```
+php artisan vendor:publish --tag=permission.seeds
+```
+3. Migrate Database
+```
+php artisan migrate
+```
+4. Seeding Database
+```
+php artisan db:seed --class=PermissionDatabaseSeeder
+```
+-->
 #Import `use CodexShaper\Permission\Traits\HasRoles` or simply `use HasRoles` Trait into your `App\User` Model
 
 #Example
