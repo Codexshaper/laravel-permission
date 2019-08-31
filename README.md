@@ -38,7 +38,7 @@ php artisan db:seed --class=PermissionDatabaseSeeder
 ```
 namespace App;
 
-use HasRoles;
+use CodexShaper\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
