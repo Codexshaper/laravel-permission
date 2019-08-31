@@ -11,7 +11,6 @@ composer require codexshaper/laravel-permission
 ```
 php artisan permission:install
 ```
-```
 #Or Publish Resource, Configs, Migration and Seeding Database Manually
 1. Publish Configs
 ```
@@ -28,7 +27,6 @@ php artisan migrate
 4. Seeding Database
 ```
 php artisan db:seed --class=PermissionDatabaseSeeder
-```
 ```
 #Import `use CodexShaper\Permission\Traits\HasRoles` or simply `use HasRoles` Trait into your `App\User` Model
 
