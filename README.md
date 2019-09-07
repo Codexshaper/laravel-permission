@@ -32,6 +32,12 @@ composer dump-autoload
 ```
 php artisan db:seed --class=PermissionDatabaseSeeder
 ```
+6. Add Routes
+```
+Route::group(['prefix' => config('permission.prefix')], function () {
+    Permission::routes();
+});
+```
 #Import `use CodexShaper\Permission\Traits\HasRoles` or simply `use HasRoles` Trait into your `App\User` Model
 
 #Example
