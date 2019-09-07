@@ -45,18 +45,18 @@ class User extends Authenticatable
     use HasRoles;
 }
 ```
-#Applly Rules on Route
-
-```
-Route::group(['middleware'=>['role:admin|manager']],function(){
-	Route::get('/permissions', function(){
-		return "Permission Working";
-	});
-});
-```
+#To see demo got to ```/admin/permissions```
 
 # Note : Before Install and use this package run below command
-
+Before Laravel version 6.0
 ```
 php artisan make:auth
+```
+After Laravel Version
+
+```
+1. composer require laravel/ui
+2. php artisan ui vue --auth
+3. npm install
+4. npm run watch
 ```
