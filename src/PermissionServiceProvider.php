@@ -4,9 +4,9 @@ namespace CodexShaper\Permission;
 
 use CodexShaper\Permission\Commands\InstallPermission;
 use CodexShaper\Permission\Http\Middleware\RoleMiddleware;
-use CodexShaper\Permission\PermissionGenarator;
-use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\View\Compilers\BladeCompiler;
 
 class PermissionServiceProvider extends ServiceProvider
 {
@@ -20,6 +20,7 @@ class PermissionServiceProvider extends ServiceProvider
     {
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'permission');
     }
 
     /**
@@ -31,7 +32,7 @@ class PermissionServiceProvider extends ServiceProvider
     {
 
         $this->app->singleton('permission', function(){
-            return new PermissionGenarator(); 
+            return new Permission(); 
         });
 
          $this->loadHelpers();
@@ -42,6 +43,7 @@ class PermissionServiceProvider extends ServiceProvider
 
         $this->registerMiddleware();
         $this->registerPublish();
+        $this->registerBladeDirectives();
         $this->registerCommands();
     }
 
@@ -67,10 +69,41 @@ class PermissionServiceProvider extends ServiceProvider
             'permission.seeds' => [
                 __DIR__."/../database/seeds/" => database_path('seeds'),
             ],
+            'permission.views' => [
+                __DIR__.'/../resources/views' => resource_path('views/vendor/permissions'),
+            ],
         ];
         foreach ($publishable as $group => $paths) {
             $this->publishes($paths, $group);
         }
+    }
+
+    protected function registerBladeDirectives() {
+        $this->app->afterResolving('blade.compiler', function( BladeCompiler $blade ){
+            $blade->directive('can', function ($permission) {
+                    return "<?php if(auth()->user() && auth()->user()->hasPermission({$permission})): ?>";
+                });
+            $blade->directive('endcan', function ($expression) {
+                    return "<?php endif; ?>";
+                });
+
+            $blade->directive('role', function ($role) {
+                return "<?php if(auth()->user() && auth()->user()->hasRole({$role})): ?>";
+            });
+            $blade->directive('endrole', function () {
+                return '<?php endif; ?>';
+            });
+
+            $blade->directive('hasrole', function ($arguments) {
+                list($role, $guard) = explode(',', $arguments.',');
+                dd( auth($guard) );
+                return "<?php if(auth({$guard})->check() && auth({$guard})->user()->hasRole({$role})): ?>";
+            });
+            $blade->directive('endhasrole', function () {
+                return '<?php endif; ?>';
+            });
+        });
+        
     }
 
     private function registerCommands()

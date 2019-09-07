@@ -13,9 +13,6 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
-        $add = Permission::where('slug','add-task')->first();
-        $edit = Permission::where('slug','edit-task')->first();
-        $delete = Permission::where('slug','delete-task')->first();
 
         $admin = Role::create([
 
@@ -24,19 +21,12 @@ class RolesSeeder extends Seeder
         	'created_at' 	=> now(),
         	'updated_at' 	=> now(),
         ]);
-        $admin->permissions()->attach([
-            $add->id => [
-                'created_at'=>now(),
-                'updated_at'=>now()
-            ],
-            $edit->id => [
-                'created_at'=>now(),
-                'updated_at'=>now()
-            ],
-            $delete->id => [
-                'created_at'=>now(),
-                'updated_at'=>now()
-            ],
+        $admin->assignPermissions([
+            'browse',
+            'read',
+            'edit',
+            'add',
+            'delete'
         ]);
 
         $manager = Role::create([
@@ -45,38 +35,22 @@ class RolesSeeder extends Seeder
         	'slug' 			=> 'manager',
         	'created_at' 	=> now(),
         	'updated_at' 	=> now(),
-        ]);
-        $manager->permissions()->attach([
-            $edit->id => [
-                'created_at'=>now(),
-                'updated_at'=>now()
-            ],
+        ])->assignPermissions([
+            'browse',
+            'read',
+            'edit',
+            'add',
         ]);
 
-        $writer = Role::create([
+        $user = Role::create([
 
-        	'name' 			=> 'Writer',
-        	'slug' 			=> 'writer',
+        	'name' 			=> 'User',
+        	'slug' 			=> 'user',
         	'created_at' 	=> now(),
         	'updated_at' 	=> now(),
-        ]);
-
-        $client = Role::create([
-
-        	'name' 			=> 'Client',
-        	'slug' 			=> 'client',
-        	'created_at' 	=> now(),
-        	'updated_at' 	=> now(),
-        ]);
-        $client->permissions()->attach([
-            $add->id => [
-                'created_at'=>now(),
-                'updated_at'=>now()
-            ],
-            $edit->id => [
-                'created_at'=>now(),
-                'updated_at'=>now()
-            ],
+        ])->assignPermissions([
+            'browse',
+            'read',
         ]);
     }
 }

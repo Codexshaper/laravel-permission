@@ -13,13 +13,12 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        $admin_role = Role::where('slug','admin')->first();
         $user = new User;
         $user->name  = "Admin";
         $user->email = "admin@admin.com";
-        $user->password = Hash::make("123456");
+        $user->password = Hash::make("123456789");
         $user->save();
-        $user->roles()->attach($admin_role,['created_at'=>now(),'updated_at'=>now()]);
+        $user->assignRoles('admin,manager,user');
         // $admin->role()->updateExistingPivot($admin_role, ['created_at'=>now(),'updated_at'=>now()]);
     }
 }

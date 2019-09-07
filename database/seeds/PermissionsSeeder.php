@@ -14,26 +14,42 @@ class PermissionsSeeder extends Seeder
     {
     	Permission::create([
 
-        	'name' 			=> 'Add Task',
-        	'slug' 			=> str_slug('add task'),
+        	'name' 			=> 'Browse',
+        	'slug' 			=> slug('browse'),
         	'created_at' 	=> now(),
         	'updated_at' 	=> now(),
         ]);
 
         Permission::create([
 
-        	'name' 			=> 'Edit Task',
-        	'slug' 			=> str_slug('edit task'),
+        	'name' 			=> 'Read',
+        	'slug' 			=> slug('read'),
         	'created_at' 	=> now(),
         	'updated_at' 	=> now(),
         ]);
 
         Permission::create([
 
-        	'name' 			=> 'Delete Task',
-        	'slug' 			=> str_slug('delete task'),
+        	'name' 			=> 'Edit',
+        	'slug' 			=> slug('edit'),
         	'created_at' 	=> now(),
         	'updated_at' 	=> now(),
+        ]);
+
+        Permission::create([
+
+            'name'          => 'Add',
+            'slug'          => slug('add'),
+            'created_at'    => now(),
+            'updated_at'    => now(),
+        ]);
+
+        Permission::create([
+
+            'name'          => 'Delete',
+            'slug'          => slug('delete'),
+            'created_at'    => now(),
+            'updated_at'    => now(),
         ]);
     }
 }

@@ -4,8 +4,6 @@ use Illuminate\Database\Seeder;
 
 class PermissionDatabaseSeeder extends Seeder
 {
-    protected $seedersPath = __DIR__.'/';
-
     /**
      * Seed the application's database.
      *

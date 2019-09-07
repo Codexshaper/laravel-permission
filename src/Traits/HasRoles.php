@@ -3,14 +3,13 @@
 namespace CodexShaper\Permission\Traits;
 
 use CodexShaper\Permission\Models\Role;
+use CodexShaper\Permission\Traits\HasPermissions;
 
 trait HasRoles
 {
-	public function roles(){
-        return $this->belongsToMany(Role::class,'role_users','user_id','role_id');
-    }
-	
-	public function hasRole($permission)
+    use HasPermissions;
+    
+    public function hasRole($permission)
     {
         foreach($this->roles as $role) {
             if ($role->slug == $permission) {
@@ -21,16 +20,19 @@ trait HasRoles
         return false;
     }
 
-    public function hasPermission($privilege)
-    {
-        foreach( $this->roles as $role ) {
-            foreach ( $role->permissions as $permission ) {
-                if ($permission->slug == $privilege) {
-                    return true;
-                }
-            }  
+    public function assignRoles( $roles, $separators =  ',.|' ) {
+        if( is_string( $roles ) ) {
+            $pattern = '/['.$separators.']/';
+            $roles = str_spliter($roles, $pattern);
         }
 
-        return false;
+        foreach ($roles as $role) {
+            $this->roles()->attach(
+               $this->getRole($role),
+               [
+                   'created_at'=>now(),
+                   'updated_at'=>now()
+               ]);
+        }
     }
 }
