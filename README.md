@@ -52,7 +52,7 @@ Before Laravel version 6.0
 ```
 php artisan make:auth
 ```
-After Laravel Version
+From Laravel Version 6.0
 
 ```
 1. composer require laravel/ui
