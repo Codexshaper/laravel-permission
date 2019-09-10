@@ -57,6 +57,7 @@ class User extends Authenticatable
 ```
 php artisan permission:install:demo
 ```
+##Demo link ```/admin/permissions```
 
 #Publish ```Views```
 ```
