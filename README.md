@@ -67,7 +67,11 @@ php artisan permission:publish:views
 #Publish ```Resources```
 ```
 php artisan permission:publish:resources
-
+```
+#For Overriding Views and Resources, Change your config file ```/config/permission.php``
+```
+'resources_path' => 'resources/views/vendor/permissions/assets',
+'views' => 'resources/views/vendor/permissions/views',
 ```
 
 # Note : Before Install and use this package run below command
