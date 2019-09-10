@@ -246,7 +246,7 @@
 				if( result.success == true ) {
 
 					var viewBtn = '<a href="#" class="view_permission btn btn-warning" title="View" data-id="'+result.permission.id+'" data-toggle="modal" data-target="#viewPermissionModal">View</a> ';
-  		            var editBtn = '<a href="#" class="edit_permission btn btn-info" data-id="'+result.permission.id+'" data-action="/admin/role/'+result.permission.id+'" title="Edit" data-toggle="modal" data-target="#editRoleModal">Edit</a> ';
+  		            var editBtn = '<a href="#" class="edit_permission btn btn-info" data-id="'+result.permission.id+'" data-action="/admin/permission/'+result.permission.id+'" title="Edit" data-toggle="modal" data-target="#editPermissionModal">Edit</a> ';
   		            var deleteBtn = '<a href="#" class="delete_permission btn btn-danger" title="Delete" data-id="'+result.permission.id+'">Delete</a> ';
 					
 					$('#permission_table').DataTable().row.add([
