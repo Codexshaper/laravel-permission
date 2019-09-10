@@ -11,10 +11,6 @@ use Illuminate\Support\Facades\Response;
 
 class PermissionController extends Controller 
 {
-	public function getRoles( Request $request )
-	{
-		return Permission::find( $request->id )->roles;
-	}
 	public function index() {
 		// dd( Role::where('slug', 'admin')->first()->permissions);
 		$roles = Role::orderBy('updated_at', 'desc')->get();

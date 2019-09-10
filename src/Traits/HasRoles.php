@@ -35,4 +35,17 @@ trait HasRoles
                ]);
         }
     }
+
+    public function syncRoles( array $ids )
+    {
+      return $this->roles()->sync($ids);
+    }
+
+    public function revokeRoles( array $ids = [] )
+    {
+      if( empty( $ids ) ) {
+        return $this->roles()->detach();
+      }
+      return $this->roles()->detach($ids);
+    }
 }

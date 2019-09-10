@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'prefix' => 'admin',
-    'namespace' => '\CodexShaper\Permission',
-    'controller_namespace' => '\CodexShaper\Permission\Http\Controllers',
+	'prefix' => 'admin',
+	'namespace' => '\CodexShaper\Permission',
+	'controller_namespace' => '\CodexShaper\Permission\Http\Controllers',
     'models' => [
         'permission' => CodexShaper\Permission\Models\Permission::class,
         'role' => CodexShaper\Permission\Models\Role::class,
@@ -14,6 +14,6 @@ return [
         'permissions' => 'permissions',
         'permission_role' => 'permission_role',
     ],
-    'resources_path' => 'vendor/codexshaper/laravel-permission/resources/assets/',
+    'resources_path' => 'package/laravel-permission/resources/assets/',
 
 ];

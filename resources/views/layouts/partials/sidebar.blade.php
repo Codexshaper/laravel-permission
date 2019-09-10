@@ -14,6 +14,11 @@
       <!-- Nav Item - Pages Collapse Menu -->
       @role('admin')
       <li class="nav-item active">
+        <a class="nav-link" href="{{ route('users') }}">
+            <i class="fas fa-user"></i>
+            <span>Users</span></a>
+      </li>
+      <li class="nav-item active">
         <a class="nav-link" href="{{ route('permissions.index') }}">
             <i class="fas fa-user-shield"></i>
             <span>Roles &amp; Permissions</span></a>
