@@ -25,22 +25,6 @@ class InstallPermissionDemo extends Command
     protected $routesPath = __DIR__.'/../../routes/';
 
     /**
-     * Get the composer command for the environment.
-     *
-     * @return string
-     */
-    protected function findComposer()
-    {
-        if (file_exists(getcwd().'/composer.phar')) {
-            return '"'.PHP_BINARY.'" '.getcwd().'/composer.phar';
-        }
-        return 'composer';
-    }
-    // public function fire(Filesystem $filesystem)
-    // {
-    //     return $this->handle($filesystem);
-    // }
-    /**
      * Execute the console command.
      *
      * @param \Illuminate\Filesystem\Filesystem $filesystem
@@ -49,11 +33,6 @@ class InstallPermissionDemo extends Command
      */
     public function handle( Filesystem $filesystem)
     {
-        $this->info('Dumping the autoloaded files and reloading all new files');
-        $composer = $this->findComposer();
-        $process = new Process($composer.' dump-autoload');
-        $process->setTimeout(null); // Setting timeout to null to prevent installation from stopping at a certain point in time
-        $process->setWorkingDirectory(base_path())->run();
 
         $this->info('Adding Demo Routes and resources');
         $demo_routes = $this->routesPath.'demo.php';
@@ -68,8 +47,5 @@ class InstallPermissionDemo extends Command
                 );
             }
         }
-
-        $this->info('Publishing resources');
-        $this->call('vendor:publish', ['--provider' => PermissionServiceProvider::class, '--tag' => ['permission.resources']]);
     }
 }

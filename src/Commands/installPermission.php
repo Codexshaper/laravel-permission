@@ -107,33 +107,5 @@ class InstallPermission extends Command
         with(new $class())->run();
 
         $this->info('Seeding Completed');
-
-        // $this->call('db:seed', ['--class' => 'PermissionDatabaseSeeder']);
-
-        if ($this->option('with-demo')) {
-            $this->info('Adding Demo Routes and resources');
-            $demo_routes = $this->routesPath.'demo.php';
-            $original_routes = $this->routesPath.'permission.php';
-            if( file_exists($original_routes) && file_exists( $demo_routes ) ) {
-                $original_contents = $filesystem->get($original_routes);
-                $demo_contents = $filesystem->get($demo_routes);
-                if (false === strpos($original_contents, '/* Demo Routes */')) {
-                    $filesystem->append(
-                        $original_routes,
-                        "\n\n".$demo_contents."\n"
-                    );
-                }
-            }
-
-            $this->info('Publishing resources');
-            $this->call('vendor:publish', ['--provider' => PermissionServiceProvider::class, '--tag' => ['permission.views']]);
-            
-        }
-
-        // $this->info('Setting up the hooks');
-        // $this->call('hook:setup');
-        // $this->info('Adding the storage symlink to your public folder');
-        // $this->call('storage:link');
-        // $this->info('Successfully installed Voyager! Enjoy');
     }
 }
