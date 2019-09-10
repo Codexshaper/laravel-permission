@@ -63,7 +63,7 @@ class UserController extends Controller
 	public function getUser( Request $request ) {
 	    if( $request->ajax() && isset($request->id) ) {
 	        $user = User::find( $request->id );
-	        $roles = $user->roles->pluck('id');
+	        $roles = $user->roles;
 	        return response()->json([
 	            'success' => true,
                 'user' => $user,
@@ -82,6 +82,22 @@ class UserController extends Controller
     		'success' => true,
     		'roles' => Role::all()
     	]);
+    }
+
+    public function editUser( Request $request ) {
+	    if( $request->ajax() && isset($request->id) ) {
+	        $user = User::find( $request->id );
+	        $roles = $user->roles->pluck('id');
+	        return response()->json([
+	            'success' => true,
+                'user' => $user,
+                'userRoles' => $roles
+            ]);
+        }
+
+	    return response()->json([
+	        'success' => false
+        ]);
     }
 
     public function updateUser( Request $request )

@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Response;
 
 class PermissionController extends Controller 
 {
+	public function doc()
+	{
+		return view('permission::permissions.doc');
+	}
 	public function index() {
 		// dd( Role::where('slug', 'admin')->first()->permissions);
 		$roles = Role::orderBy('updated_at', 'desc')->get();
@@ -205,7 +209,7 @@ class PermissionController extends Controller
 
 	public function assets(Request $request)
     {
-        $file = base_path(config('permission.resources_path').urldecode($request->path));
+        $file = base_path(trim(config('permission.resources_path'), '/')."/".urldecode($request->path));
 
         if (File::exists($file)) {
             

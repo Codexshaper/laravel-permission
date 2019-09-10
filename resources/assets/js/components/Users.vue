@@ -226,7 +226,7 @@
                 var self = this;
                 axios({
                     method: 'get',
-                    url: '/admin/user/'+id,
+                    url: '/admin/user/edit/'+id,
                     responseType: 'json'
                 }).then(function (response) {
                     // console.log( response.data );
@@ -244,7 +244,6 @@
                 })
                 .then(function(response){
                     // console.log( response.data );
-                    self.resetForm();
                     self.fetchUsers();
                 })
                 .catch(function(err){

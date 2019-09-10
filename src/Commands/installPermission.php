@@ -22,11 +22,14 @@ class InstallPermission extends Command
      */
     protected $description = 'Install the CodexShaper Laravel permission';
 
+    protected $seedersPath = __DIR__.'/../../database/seeds/';
+    protected $routesPath = __DIR__.'/../../routes/';
+
     protected function getOptions()
     {
         return [
             ['force', null, InputOption::VALUE_NONE, 'Force the operation to run when in production', null],
-            ['with-dummy', null, InputOption::VALUE_NONE, 'Install with dummy data', null],
+            ['with-demo', null, InputOption::VALUE_NONE, 'Install with demo data', null],
         ];
     }
     /**
@@ -95,26 +98,38 @@ class InstallPermission extends Command
 
         $this->info('Seeding data into the database');
 
-        // $class = 'PermissionDatabaseSeeder';
+        $class = 'PermissionDatabaseSeeder';
+        $file = $this->seedersPath.$class.'.php';
 
-        // if (!class_exists($class)) {
-        //     require_once $this->seedersPath.$class.'.php';
-        // }
-        // with(new $class())->run();
+        if ( file_exists( $file ) && !class_exists($class)) {
+            require_once $file;
+        }
+        with(new $class())->run();
 
-        $this->call('db:seed', ['--class' => 'PermissionDatabaseSeeder']);
+        $this->info('Seeding Completed');
 
-        // if ($this->option('with-dummy')) {
-        //     $this->info('Publishing dummy content');
-        //     $tags = ['dummy_seeds', 'dummy_content', 'dummy_config', 'dummy_migrations'];
-        //     $this->call('vendor:publish', ['--provider' => VoyagerDummyServiceProvider::class, '--tag' => $tags]);
-        //     $this->info('Migrating dummy tables');
-        //     $this->call('migrate');
-        //     $this->info('Seeding dummy data');
-        //     $this->seed('VoyagerDummyDatabaseSeeder');
-        // } else {
-        //     $this->call('vendor:publish', ['--provider' => VoyagerServiceProvider::class, '--tag' => ['config', 'voyager_avatar']]);
-        // }
+        // $this->call('db:seed', ['--class' => 'PermissionDatabaseSeeder']);
+
+        if ($this->option('with-demo')) {
+            $this->info('Adding Demo Routes and resources');
+            $demo_routes = $this->routesPath.'demo.php';
+            $original_routes = $this->routesPath.'permission.php';
+            if( file_exists($original_routes) && file_exists( $demo_routes ) ) {
+                $original_contents = $filesystem->get($original_routes);
+                $demo_contents = $filesystem->get($demo_routes);
+                if (false === strpos($original_contents, '/* Demo Routes */')) {
+                    $filesystem->append(
+                        $original_routes,
+                        "\n\n".$demo_contents."\n"
+                    );
+                }
+            }
+
+            $this->info('Publishing resources');
+            $this->call('vendor:publish', ['--provider' => PermissionServiceProvider::class, '--tag' => ['permission.views']]);
+            
+        }
+
         // $this->info('Setting up the hooks');
         // $this->call('hook:setup');
         // $this->info('Adding the storage symlink to your public folder');

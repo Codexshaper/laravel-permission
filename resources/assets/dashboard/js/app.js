@@ -2103,7 +2103,7 @@ __webpack_require__.r(__webpack_exports__);
       var self = this;
       axios({
         method: 'get',
-        url: '/admin/user/' + id,
+        url: '/admin/user/edit/' + id,
         responseType: 'json'
       }).then(function (response) {
         // console.log( response.data );
@@ -2120,7 +2120,6 @@ __webpack_require__.r(__webpack_exports__);
         data: this.user
       }).then(function (response) {
         // console.log( response.data );
-        self.resetForm();
         self.fetchUsers();
       })["catch"](function (err) {// console.log( err );
       });
