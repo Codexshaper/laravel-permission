@@ -51,7 +51,23 @@ class User extends Authenticatable
     use HasRoles;
 }
 ```
-#To see demo got to ```/admin/permissions```
+#Check Permission go to ```/admin/laravel-permission```
+
+#Install Demo
+```
+php artisan permission:install:demo
+```
+
+#Publish ```Views```
+```
+php artisan permission:publish:views
+```
+
+#Publish ```Resources```
+```
+php artisan permission:publish:resources
+
+```
 
 # Note : Before Install and use this package run below command
 Before Laravel version 6.0
