@@ -14,6 +14,6 @@ return [
         'permissions' => 'permissions',
         'permission_role' => 'permission_role',
     ],
-    'resources_path' => 'package/laravel-permission/resources/assets/',
+    'resources_path' => 'vendor/codexshaper/laravel-permission/resources/assets/',
 
 ];
