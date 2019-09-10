@@ -23,7 +23,6 @@ class InstallPermission extends Command
     protected $description = 'Install the CodexShaper Laravel permission';
 
     protected $seedersPath = __DIR__.'/../../database/seeds/';
-    protected $routesPath = __DIR__.'/../../routes/';
 
     protected function getOptions()
     {

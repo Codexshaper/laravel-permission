@@ -64,5 +64,5 @@ From Laravel Version 6.0
 1. composer require laravel/ui
 2. php artisan ui vue --auth
 3. npm install
-4. npm run dev
+4. npm run watch
 ```
