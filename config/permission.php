@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'prefix' => 'admin',
+	'prefix' => '/admin',
 	'namespace' => '\CodexShaper\Permission',
 	'controller_namespace' => '\CodexShaper\Permission\Http\Controllers',
     'models' => [

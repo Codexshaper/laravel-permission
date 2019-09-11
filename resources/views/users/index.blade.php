@@ -7,7 +7,7 @@
 @endsection
 @section('content')
 
-  <users-table add-action="{{ route('user.add') }}" edit-action="{{ route('user.update') }}"></users-table>
+  <users-table add-action="{{ route('user.add') }}" edit-action="{{ route('user.update') }}" prefix="{{ permission_url_prefix() }}"></users-table>
 
 @endsection
 

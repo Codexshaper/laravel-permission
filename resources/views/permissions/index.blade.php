@@ -298,6 +298,7 @@
   <script src="{{ permission_asset('dashboard/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
   <script src="{{ permission_asset('dashboard/js/sweetalert2.min.js') }}"></script>
   <script type="text/javascript">
+    let permission_prefix = "<?php echo permission_url_prefix(); ?>"
   	// Call the dataTables jQuery plugin
 	$(document).ready(function() {
 	  $('#role_table').DataTable({

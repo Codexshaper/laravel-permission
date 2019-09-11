@@ -21,7 +21,7 @@
 				if( result.success == true ) {
 
 					var viewBtn = '<a href="#" class="view_role btn btn-warning" title="View" data-id="'+result.role.id+'" data-toggle="modal" data-target="#viewRoleModal">View</a> ';
-  		            var editBtn = '<a href="#" class="edit_role btn btn-info" data-id="'+result.role.id+'" data-action="/admin/role/'+result.role.id+'" title="Edit" data-toggle="modal" data-target="#editRoleModal">Edit</a> ';
+  		            var editBtn = '<a href="#" class="edit_role btn btn-info" data-id="'+result.role.id+'" data-action="'+permission_prefix+'/role/'+result.role.id+'" title="Edit" data-toggle="modal" data-target="#editRoleModal">Edit</a> ';
   		            var deleteBtn = '<a href="#" class="delete_role btn btn-danger" title="Delete" data-id="'+result.role.id+'">Delete</a> ';
 					
 					$('#role_table').DataTable().row.add([
@@ -36,7 +36,7 @@
 				}
 			},
 			error: function(err){
-				console.log( err );
+				// console.log( err );
 			}
 		});
 	});
@@ -48,7 +48,7 @@
 		// var action = $(this).data('action');
 
 		$.ajax({
-			url: '/admin/role/'+id,
+			url: permission_prefix+'/role/'+id,
 			method: 'GET',
 			dataType: 'json',
 			data: {
@@ -76,7 +76,7 @@
 				}
 			},
 			error: function( err ){
-				console.log(err);
+				// console.log(err);
 			}
 		});
 	});
@@ -95,7 +95,7 @@
 				'id' : id
 			},
 			success: function(result){
-				console.log( result );
+				// console.log( result );
 				if( result.success == true ){
 					document.getElementById("edit_role_form").reset(); 
 					var form = $('#edit_role_form');
@@ -119,7 +119,7 @@
 				}
 			},
 			error: function( err ){
-				console.log(err);
+				// console.log(err);
 			}
 		});
 	});
@@ -147,7 +147,7 @@
 					var row_id = $('#row_'+result.role.id).data("row");
 					
 					var viewBtn = '<a href="#" class="view_role btn btn-warning" title="View" data-id="'+result.role.id+'" data-toggle="modal" data-target="#viewRoleModal">View</a> ';
-  		            var editBtn = '<a href="#" class="edit_role btn btn-info" data-id="'+result.role.id+'" data-action="/admin/role/'+result.role.id+'" title="Edit" data-toggle="modal" data-target="#editRoleModal">Edit</a> ';
+  		            var editBtn = '<a href="#" class="edit_role btn btn-info" data-id="'+result.role.id+'" data-action="'+permission_prefix+'/role/'+result.role.id+'" title="Edit" data-toggle="modal" data-target="#editRoleModal">Edit</a> ';
   		            var deleteBtn = '<a href="#" class="delete_role btn btn-danger" title="Delete" data-id="'+result.role.id+'">Delete</a> ';
 					
 					$('#role_table').DataTable().row(row_id).data([
@@ -162,7 +162,7 @@
 				}
 			},
 			error: function( err ) {
-				console.log( err );
+				// console.log( err );
 			}
 		});
 	});
@@ -179,7 +179,7 @@
 	    }).then((result) => {
 	        if (result.value) {
 	            $.ajax({
-	                url: '/admin/role/delete',
+	                url: permission_prefix+'/role',
 	                method: 'POST',
 	                dataType: 'json',
 	                data: {
@@ -188,7 +188,7 @@
 	                    'role_id': $(this).data('id'),
 	                },
 	                success: function(result){
-	                	console.log( result );
+	                	// console.log( result );
 	                    if( result.success == true ) {
 	                        // console.log( data );
 	                        Swal.fire(
@@ -207,7 +207,7 @@
 	                    }
 	                },
 	                error: function(err){
-	                    console.log( err );
+	                    // console.log( err );
 	                }
 	            });
 	        } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -242,11 +242,11 @@
 			cache: false,
 			processData: false,
 			success: function(result){
-				console.log( result );
+				// console.log( result );
 				if( result.success == true ) {
 
 					var viewBtn = '<a href="#" class="view_permission btn btn-warning" title="View" data-id="'+result.permission.id+'" data-toggle="modal" data-target="#viewPermissionModal">View</a> ';
-  		            var editBtn = '<a href="#" class="edit_permission btn btn-info" data-id="'+result.permission.id+'" data-action="/admin/permission/'+result.permission.id+'" title="Edit" data-toggle="modal" data-target="#editPermissionModal">Edit</a> ';
+  		            var editBtn = '<a href="#" class="edit_permission btn btn-info" data-id="'+result.permission.id+'" data-action="'+permission_prefix+'/permission/'+result.permission.id+'" title="Edit" data-toggle="modal" data-target="#editPermissionModal">Edit</a> ';
   		            var deleteBtn = '<a href="#" class="delete_permission btn btn-danger" title="Delete" data-id="'+result.permission.id+'">Delete</a> ';
 					
 					$('#permission_table').DataTable().row.add([
@@ -261,7 +261,7 @@
 				}
 			},
 			error: function(err){
-				console.log( err );
+				// console.log( err );
 			}
 		});
 	});
@@ -273,14 +273,14 @@
 		// var action = $(this).data('action');
 
 		$.ajax({
-			url: '/admin/permission/'+id,
+			url: permission_prefix+'/permission/'+id,
 			method: 'GET',
 			dataType: 'json',
 			data: {
 				'id' : id
 			},
 			success: function(result){
-				console.log( result );
+				// console.log( result );
 				if( result.success == true ){
 					var form = $('#edit_permission_form');
 					$("#permission_id").val(id);
@@ -291,7 +291,7 @@
 				}
 			},
 			error: function( err ){
-				console.log(err);
+				// console.log(err);
 			}
 		});
 	});
@@ -310,7 +310,7 @@
 				'id' : id
 			},
 			success: function(result){
-				console.log( result );
+				// console.log( result );
 				if( result.success == true ){
 
 					document.getElementById("edit_permission_form").reset(); 
@@ -335,7 +335,7 @@
 				}
 			},
 			error: function( err ){
-				console.log(err);
+				// console.log(err);
 			}
 		});
 	});
@@ -358,12 +358,12 @@
 			cache: false,
 			processData: false,
 			success: function( result ){
-				console.log( result );
+				// console.log( result );
 				if( result.success == true ) {
 					var row_id = $('#row_'+result.permission.id).data("row");
 					
 					var viewBtn = '<a href="#" class="view_permission btn btn-warning" title="View" data-id="'+result.permission.id+'" data-toggle="modal" data-target="#viewPermissionModal">View</a> ';
-  		            var editBtn = '<a href="#" class="edit_permission btn btn-info" data-id="'+result.permission.id+'" data-action="/admin/permission/'+result.permission.id+'" title="Edit" data-toggle="modal" data-target="#editPermissionModal">Edit</a> ';
+  		            var editBtn = '<a href="#" class="edit_permission btn btn-info" data-id="'+result.permission.id+'" data-action="'+permission_prefix+'/permission/'+result.permission.id+'" title="Edit" data-toggle="modal" data-target="#editPermissionModal">Edit</a> ';
   		            var deleteBtn = '<a href="#" class="delete_permission btn btn-danger" title="Delete" data-id="'+result.permission.id+'">Delete</a> ';
 					
 					$('#permission_table').DataTable().row(row_id).data([
@@ -378,7 +378,7 @@
 				}
 			},
 			error: function( err ) {
-				console.log( err );
+				// console.log( err );
 			}
 		});
 	});
@@ -395,7 +395,7 @@
 	    }).then((result) => {
 	        if (result.value) {
 	            $.ajax({
-	                url: '/admin/permission/delete',
+	                url: permission_prefix+'/permission',
 	                method: 'POST',
 	                dataType: 'json',
 	                data: {
@@ -404,7 +404,7 @@
 	                    'permission_id': $(this).data('id'),
 	                },
 	                success: function(result){
-	                	console.log( result );
+	                	// console.log( result );
 	                    if( result.success == true ) {
 	                        // console.log( data );
 	                        Swal.fire(
@@ -423,7 +423,7 @@
 	                    }
 	                },
 	                error: function(err){
-	                    console.log( err );
+	                    // console.log( err );
 	                }
 	            });
 	        } else if (result.dismiss === Swal.DismissReason.cancel) {

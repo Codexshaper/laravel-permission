@@ -2036,7 +2036,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['addAction', 'editAction'],
+  props: ['addAction', 'editAction', 'prefix'],
   data: function data() {
     return {
       users: [],
@@ -2060,7 +2060,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var parent = this;
-      fetch('/admin/users/all').then(function (res) {
+      var url = this.prefix + '/users/all';
+      fetch(url).then(function (res) {
         return res.json();
       }).then(function (res) {
         _this.destroyDataTables();
@@ -2075,7 +2076,8 @@ __webpack_require__.r(__webpack_exports__);
     fetchRoles: function fetchRoles() {
       var _this2 = this;
 
-      fetch('/admin/roles/all').then(function (res) {
+      var url = this.prefix + '/roles/all';
+      fetch(url).then(function (res) {
         return res.json();
       }).then(function (res) {
         _this2.destroyDataTables();
@@ -2084,6 +2086,9 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         return console.log(err);
       });
+    },
+    showAddUserModal: function showAddUserModal(event) {
+      this.resetForm();
     },
     addUser: function addUser(event) {
       var self = this;
@@ -2101,14 +2106,15 @@ __webpack_require__.r(__webpack_exports__);
     editUser: function editUser(event) {
       var id = event.target.getAttribute('data-id');
       var self = this;
+      var url = this.prefix + '/user/' + id;
       axios({
         method: 'get',
-        url: '/admin/user/edit/' + id,
+        url: url,
         responseType: 'json'
       }).then(function (response) {
         // console.log( response.data );
         self.user = response.data.user;
-        self.user.checkedRoles = response.data.userRoles;
+        self.user.checkedRoles = response.data.checkedRoles;
       });
     },
     updateUser: function updateUser(event) {
@@ -2127,9 +2133,10 @@ __webpack_require__.r(__webpack_exports__);
     viewUser: function viewUser(event) {
       var id = event.target.getAttribute('data-id');
       var parent = this;
+      var url = this.prefix + '/user/' + id;
       axios({
         method: 'get',
-        url: '/admin/user/' + id,
+        url: url,
         responseType: 'json'
       }).then(function (response) {
         // console.log( response.data );
@@ -2138,6 +2145,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     deleteUser: function deleteUser(event) {
+      var _this3 = this;
+
       event.preventDefault();
       var id = event.target.getAttribute('data-id');
       var self = this;
@@ -2150,9 +2159,10 @@ __webpack_require__.r(__webpack_exports__);
         cancelButtonText: 'No, keep it'
       }).then(function (result) {
         if (result.value) {
+          var url = _this3.prefix + '/user/' + id;
           axios({
             method: 'delete',
-            url: '/admin/user/delete/' + id
+            url: url
           }).then(function (response) {
             // console.log( response.data );
             // self.resetForm();
@@ -40454,7 +40464,27 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "users-container" }, [
     _c("div", { staticClass: "card shadow mb-4" }, [
-      _vm._m(0),
+      _c("div", { staticClass: "card-header py-3" }, [
+        _c("h6", { staticClass: "m-0 font-weight-bold text-primary" }, [
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-success btn-icon-split",
+              attrs: {
+                href: "#",
+                "data-toggle": "modal",
+                "data-target": "#addUserModal"
+              },
+              on: { click: _vm.showAddUserModal }
+            },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("span", { staticClass: "text" }, [_vm._v("Add User")])
+            ]
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "table-responsive" }, [
@@ -41146,27 +41176,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header py-3" }, [
-      _c("h6", { staticClass: "m-0 font-weight-bold text-primary" }, [
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-success btn-icon-split",
-            attrs: {
-              href: "#",
-              "data-toggle": "modal",
-              "data-target": "#addUserModal"
-            }
-          },
-          [
-            _c("span", { staticClass: "icon text-white-50" }, [
-              _c("i", { staticClass: "fas fa-plus" })
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "text" }, [_vm._v("Add User")])
-          ]
-        )
-      ])
+    return _c("span", { staticClass: "icon text-white-50" }, [
+      _c("i", { staticClass: "fas fa-plus" })
     ])
   },
   function() {
@@ -53697,8 +53708,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! G:\laravel\dashboard\packages\package\laravel-permission\resources\assets\js\app.js */"./resources/assets/js/app.js");
-module.exports = __webpack_require__(/*! G:\laravel\dashboard\packages\package\laravel-permission\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! G:\laravel\packages\package\laravel-permission\resources\assets\js\app.js */"./resources/assets/js/app.js");
+module.exports = __webpack_require__(/*! G:\laravel\packages\package\laravel-permission\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
 
 
 /***/ })

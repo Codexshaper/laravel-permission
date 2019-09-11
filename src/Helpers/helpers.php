@@ -18,3 +18,13 @@ if( !function_exists('permission_asset') ) {
 		return route('permission.asset').'?path='.urlencode($path);
 	}
 }
+
+if( !function_exists( 'permission_url_prefix' ) ) {
+	function permission_url_prefix(){
+		if( config('permission.prefix') != null ) {
+			return config('permission.prefix');
+		}
+
+		return '/admin';
+	}
+}

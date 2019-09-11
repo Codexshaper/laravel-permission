@@ -3,7 +3,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">
-                    <a href="#" class="btn btn-success btn-icon-split" data-toggle="modal" data-target="#addUserModal">
+                    <a href="#" class="btn btn-success btn-icon-split" v-on:click="showAddUserModal" data-toggle="modal" data-target="#addUserModal">
                         <span class="icon text-white-50"><i class="fas fa-plus"></i></span>
                         <span class="text">Add User</span>
                     </a>
@@ -164,7 +164,7 @@
 
 <script>
     export default {
-        props: ['addAction', 'editAction'],
+        props: ['addAction', 'editAction','prefix'],
         data(){
             return {
                 users:[],
@@ -176,7 +176,7 @@
                 },
                 userRoles: [],
                 roles: [],
-                isChecked: true
+                isChecked: true,
             };
         },
         created(){
@@ -185,8 +185,9 @@
         },
         methods: {
             fetchUsers() {
-              let parent = this;
-              fetch('/admin/users/all')
+                let parent = this;
+                let url = this.prefix+'/users/all';
+                fetch(url)
                 .then(res => res.json())
                 .then(res => {
                     this.destroyDataTables();
@@ -196,7 +197,8 @@
                 .catch(err => console.log(err));
             },
             fetchRoles: function(){
-                fetch('/admin/roles/all')
+                let url = this.prefix+'/roles/all';
+                fetch(url)
                   .then(res => res.json())
                   .then(res => {
                       this.destroyDataTables();
@@ -204,6 +206,9 @@
                       // console.log( this.roles );
                   })
                   .catch(err => console.log(err));
+            },
+            showAddUserModal: function(event){
+                this.resetForm();
             },
             addUser: function(event){
                 var self = this;
@@ -224,14 +229,15 @@
             editUser: function(event){
                 var id = event.target.getAttribute('data-id');
                 var self = this;
+                let url = this.prefix+'/user/'+id;
                 axios({
                     method: 'get',
-                    url: '/admin/user/edit/'+id,
+                    url: url,
                     responseType: 'json'
                 }).then(function (response) {
                     // console.log( response.data );
                     self.user = response.data.user;
-                    self.user.checkedRoles = response.data.userRoles;
+                    self.user.checkedRoles = response.data.checkedRoles;
                 });
             },
             updateUser: function(event){
@@ -253,9 +259,10 @@
             viewUser: function(event){
                 var id = event.target.getAttribute('data-id');
                 var parent = this;
+                let url = this.prefix+'/user/'+id;
                 axios({
                     method: 'get',
-                    url: '/admin/user/'+id,
+                    url: url,
                     responseType: 'json'
                 }).then(function (response) {
                     // console.log( response.data );
@@ -276,9 +283,10 @@
                     cancelButtonText: 'No, keep it'
                 }).then((result) => {
                     if (result.value) {
+                        let url = this.prefix+'/user/'+id;
                         axios({
                           method: 'delete',
-                          url: '/admin/user/delete/'+id,
+                          url: url,
                         })
                         .then(function(response){
                             // console.log( response.data );
