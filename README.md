@@ -1,6 +1,20 @@
 # laravel-permission
 Laravel Multi Authentication
 
+# Note : Before Install and use this package run below command
+Before Laravel version 6.0
+```
+php artisan make:auth
+```
+From Laravel Version 6.0
+
+```
+1. composer require laravel/ui
+2. php artisan ui vue --auth
+3. npm install
+4. npm run dev
+```
+
 #Install the Package
 
 ```
@@ -73,21 +87,7 @@ php artisan permission:publish:resources
 'resources_path' => 'resources/views/vendor/permissions/assets',
 'views' => 'resources/views/vendor/permissions/views',
 ```
-
-# Note : Before Install and use this package run below command
-Before Laravel version 6.0
-```
-php artisan make:auth
-```
-From Laravel Version 6.0
-
-```
-1. composer require laravel/ui
-2. php artisan ui vue --auth
-3. npm install
-4. npm run dev
-```
-# Create Permission
+# Permission
 ```
 use CodexShaper\Permission\Models\Permission;
 
@@ -118,7 +118,7 @@ $permission->revokePermissionsFromRoles( $role_ids );
 // Delete all roles for current permission
 $permission->revokePermissionsFromRoles();
 ```
-# Create Role
+# Role
 ```
 use CodexShaper\Permission\Models\Role;
 
@@ -156,7 +156,7 @@ $admin->revokePermissions();
 ```
 $admin->hasPermission( $permission_slug );
 ```
-# Create New User with Roles
+# User
 ```
 use App\User;
 
