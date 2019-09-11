@@ -196,3 +196,9 @@ $user->revokeRoles( $ids );
 // Delete all roles for current user
 $user->revokeRoles();
 ```
+# Add Middleware on route
+```
+Route::group(['middleware'=>['role:admin']],function(){
+	// Routes
+});
+```
