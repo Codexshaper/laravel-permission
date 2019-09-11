@@ -15,17 +15,17 @@ From Laravel Version 6.0
 4. npm run dev
 ```
 
-#Install the Package
+# Install the Package
 
 ```
 composer require codexshaper/laravel-permission
 ```
-#Publish Resource, Configs, Migration and Seeding Database in a single command
+# Publish Resource, Configs, Migration and Seeding Database in a single command
 
 ```
 php artisan permission:install
 ```
-#Or Publish Resource, Configs, Migration and Seeding Database Manually
+# Or Publish Resource, Configs, Migration and Seeding Database Manually
 1. Publish Configs
 ```
 php artisan vendor:publish --tag=permission.config
@@ -53,8 +53,6 @@ Route::group(['prefix' => config('permission.prefix')], function () {
 });
 ```
 #Import `use CodexShaper\Permission\Traits\HasRoles` or simply `use HasRoles` Trait into your `App\User` Model
-
-#Example
 ```
 namespace App;
 
@@ -67,7 +65,7 @@ class User extends Authenticatable
 ```
 #Check Permission go to ```/admin/laravel-permission```
 
-#Install Demo
+# Install Demo
 ```
 php artisan permission:install:demo
 ```
