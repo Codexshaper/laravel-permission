@@ -92,10 +92,10 @@ From Laravel Version 6.0
 use CodexShaper\Permission\Models\Permission;
 
 $permission = Permission::create([
-	'name' 			=> 'Browse',
-	'slug' 			=> slug('browse'),
-	'created_at' 	=> now(),
-	'updated_at' 	=> now(),
+	'name' 	=> 'Browse',
+	'slug' 	=> slug('browse'),
+	'created_at' => now(),
+	'updated_at' => now(),
 ]);
 ```
 
@@ -123,10 +123,10 @@ $permission->revokePermissionsFromRoles();
 use CodexShaper\Permission\Models\Role;
 
 $admin = Role::create([
-	'name' 			=> 'Super Admin',
-	'slug' 			=> 'admin',
-	'created_at' 	=> now(),
-	'updated_at' 	=> now(),
+	'name' 	=> 'Super Admin',
+	'slug' 	=> 'admin',
+	'created_at' => now(),
+	'updated_at' => now(),
 ]);
 ```
 #Assign Permission
