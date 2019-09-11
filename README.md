@@ -87,3 +87,112 @@ From Laravel Version 6.0
 3. npm install
 4. npm run dev
 ```
+# Create Permission
+```
+use CodexShaper\Permission\Models\Permission;
+
+$permission = Permission::create([
+	'name' 			=> 'Browse',
+	'slug' 			=> slug('browse'),
+	'created_at' 	=> now(),
+	'updated_at' 	=> now(),
+]);
+```
+
+#Give Permission to Roles
+```
+// Create Role before set permission
+// $roles = [role_slug_or_id] ex: ['admin',1,2,'author']
+$permission->givePermissionToRoles( $roles );
+```
+#Update permission roles
+```
+$ids = [1,3,5]
+$permission->syncPermissionToRoles( $ids );
+```
+#Delete permission roles
+```
+// Delete specific Roles
+$ids = [1,3,5];
+$permission->revokePermissionsFromRoles( $ids );
+// Delete all roles for current permission
+$permission->revokePermissionsFromRoles();
+```
+# Create Role
+```
+use CodexShaper\Permission\Models\Role;
+
+$admin = Role::create([
+	'name' 			=> 'Super Admin',
+	'slug' 			=> 'admin',
+	'created_at' 	=> now(),
+	'updated_at' 	=> now(),
+]);
+```
+#Assign Permission
+```
+$admin->assignPermissions([
+    'browse',
+    'read',
+    'edit',
+    'add',
+    'delete'
+]);
+```
+#Update Permission
+```
+$ids = [1,3,5]
+$admin->syncPermissions( $ids );
+```
+#Delete permission
+```
+// Delete specific Permissions
+$ids = [1,3,5];
+$admin->revokePermissions( $ids );
+// Delete all roles for current roles
+$admin->revokePermissions();
+```
+# Create New User with Roles
+```
+use App\User;
+
+$user = new User;
+$user->name = 'John Doe';
+$user->email = 'john@gmail.com';
+$user->password = Hash::make('password');
+$user->save();
+$user->assignRoles('admin');
+```
+#Assign Roles into existing user
+```
+$user = User::find(1);
+$user->assignRoles('admin');
+```
+#Assign Multiple roles
+```
+$user = User::find(1);
+// Use pipe(|)
+$user->assignRoles('admin|client|customer');
+// Or use comma(,)
+$user->assignRoles('admin,client,customer');
+// Or use space
+$user->assignRoles('admin client customer');
+// Or Mixed
+$user->assignRoles('admin client,customer|write');
+// Pass custom separators
+$separators =  ',.| ';
+$user->assignRoles('admin client,customer|write', $separators);
+```
+#Update Roles
+```
+$role_ids = [1,2,3];
+$user->syncRoles( $role_ids );
+```
+#Delete Roles
+```
+// Delete specific Roles for current User
+$ids = [1,3,5];
+$user->revokeRoles( $ids );
+// Delete all roles for current user
+$user->revokeRoles();
+```
