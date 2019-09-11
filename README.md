@@ -107,14 +107,14 @@ $permission->givePermissionToRoles( $roles );
 ```
 #Update permission roles
 ```
-$ids = [1,3,5]
-$permission->syncPermissionToRoles( $ids );
+$role_ids = [1,3,5]
+$permission->syncPermissionToRoles( $role_ids );
 ```
 #Delete permission roles
 ```
 // Delete specific Roles
-$ids = [1,3,5];
-$permission->revokePermissionsFromRoles( $ids );
+$role_ids = [1,3,5];
+$permission->revokePermissionsFromRoles( $role_ids );
 // Delete all roles for current permission
 $permission->revokePermissionsFromRoles();
 ```
@@ -141,14 +141,14 @@ $admin->assignPermissions([
 ```
 #Update Permission
 ```
-$ids = [1,3,5]
-$admin->syncPermissions( $ids );
+$permission_ids = [1,3,5]
+$admin->syncPermissions( $permission_ids );
 ```
 #Delete permission
 ```
 // Delete specific Permissions
-$ids = [1,3,5];
-$admin->revokePermissions( $ids );
+$permission_ids = [1,3,5];
+$admin->revokePermissions( $permission_ids );
 // Delete all roles for current roles
 $admin->revokePermissions();
 ```
@@ -195,8 +195,8 @@ $user->syncRoles( $role_ids );
 #Delete Roles
 ```
 // Delete specific Roles for current User
-$ids = [1,3,5];
-$user->revokeRoles( $ids );
+$role_ids = [1,3,5];
+$user->revokeRoles( $role_ids );
 // Delete all roles for current user
 $user->revokeRoles();
 ```
