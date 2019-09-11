@@ -152,6 +152,10 @@ $admin->revokePermissions( $ids );
 // Delete all roles for current roles
 $admin->revokePermissions();
 ```
+#Check Permission
+```
+$admin->hasPermission( $permission_slug );
+```
 # Create New User with Roles
 ```
 use App\User;
@@ -196,9 +200,32 @@ $user->revokeRoles( $ids );
 // Delete all roles for current user
 $user->revokeRoles();
 ```
+#Check Role
+```
+$user->hasRole( $role_slug );
+```
 # Add Middleware on route
 ```
 Route::group(['middleware'=>['role:admin']],function(){
 	// Routes
 });
+```
+
+# View Directories
+```
+@can('browse')
+<p>You Can Browse</p>
+@endcan
+
+@role('admin')
+<p>You are admin</p>
+@endrole
+
+@hasrole('admin')
+<p>You have admin Permission</p>
+@endhasrole
+
+@haspermission('edit')
+<p>You have admin Permission</p>
+@endhaspermission
 ```
