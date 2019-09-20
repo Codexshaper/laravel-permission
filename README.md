@@ -48,7 +48,7 @@ php artisan db:seed --class=PermissionDatabaseSeeder
 ```
 6. Add Routes
 ```
-Route::group(['prefix' => config('permission.prefix')], function () {
+Route::group(['prefix' => config('permission.prefix'),'middleware'=>['role:admin']], function () {
     Permission::routes();
 });
 ```
