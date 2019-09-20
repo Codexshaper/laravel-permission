@@ -89,7 +89,7 @@ class InstallPermission extends Command
         if (false === strpos($routes_contents, 'Permission::routes()')) {
             $filesystem->append(
                 base_path('routes/web.php'),
-                "\n\nRoute::group(['prefix' => config('permission.prefix')], function () {\n    Permission::routes();\n});\n"
+                "\n\nRoute::group(['prefix' => config('permission.prefix'),'middleware'=>['role:admin']], function () {\n    Permission::routes();\n});\n"
             );
         }
 

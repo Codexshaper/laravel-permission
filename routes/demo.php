@@ -1,5 +1,5 @@
 /* Demo Routes */
-Route::group(['namespace' => config('permission.controller_namespace'),'middleware'=>['role:admin']],function(){
+Route::group(['namespace' => config('permission.controller_namespace')],function(){
 	// Permissions
 	Route::get('/permissions', 'PermissionController@index')->name('permissions.index');
 
