@@ -227,3 +227,16 @@ Route::group(['middleware'=>['role:admin']],function(){
 <p>You have admin Permission</p>
 @endhaspermission
 ```
+## Authors
+
+* **Md Abu Ahsan Basir** - *Main Developer & Maintainer* - [github](https://github.com/maab16)
+* **Mahabubul Alam** - *Main designer* - [github](https://github.com/mahabubul1)
+
+See also the list of [contributors](https://github.com/laravel-menu-builder/contributors) who participated in this project.
+
+## License
+
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+
+- **[MIT license](http://opensource.org/licenses/mit-license.php)**
+- Copyright 2019 © <a href="https://github.com/Codexshaper/laravel-menu-builder/blob/master/LICENSE" target="_blank">CodexShaper</a>.
