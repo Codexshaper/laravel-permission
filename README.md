@@ -1,7 +1,7 @@
 # laravel-permission
 Laravel Multi Authentication
 
-# Note : Before Install and use this package run below command
+## Note : Before Install and use this package run below command
 Before Laravel version 6.0
 ```
 php artisan make:auth
@@ -15,17 +15,17 @@ From Laravel Version 6.0
 4. npm run dev
 ```
 
-#Install the Package
+#### Install the Package
 
 ```
 composer require codexshaper/laravel-permission
 ```
-#Publish Resource, Configs, Migration and Seeding Database in a single command
+##### Publish Resource, Configs, Migration and Seeding Database in a single command
 
 ```
 php artisan permission:install
 ```
-#Or Publish Resource, Configs, Migration and Seeding Database Manually
+##### Or Publish Resource, Configs, Migration and Seeding Database Manually
 1. Publish Configs
 ```
 php artisan vendor:publish --tag=permission.config
@@ -52,7 +52,7 @@ Route::group(['prefix' => config('permission.prefix'),'middleware'=>['role:admin
     Permission::routes();
 });
 ```
-#Import `use CodexShaper\Permission\Traits\HasRoles` or simply `use HasRoles` Trait into your `App\User` Model
+##### Import `use CodexShaper\Permission\Traits\HasRoles` or simply `use HasRoles` Trait into your `App\User` Model
 ```
 namespace App;
 
@@ -63,24 +63,24 @@ class User extends Authenticatable
     use HasRoles;
 }
 ```
-#Check Permission go to ```/admin/laravel-permission```
+##### Check Permission go to ```/admin/laravel-permission```
 
-#Install Demo
+###### Install Demo
 ```
 php artisan permission:install:demo
 ```
-##Demo link ```/admin/permissions```
+##### Demo url ```/admin/permissions```
 
-#Publish ```Views```
+###### Publish ```Views```
 ```
 php artisan permission:publish:views
 ```
 
-#Publish ```Resources```
+##### Publish ```Resources```
 ```
 php artisan permission:publish:resources
 ```
-#For Overriding Views and Resources, Change your config file ```/config/permission.php```
+#### For Overriding Views and Resources, Change your config file ```/config/permission.php```
 ```
 'resources_path' => 'resources/views/vendor/permissions/assets',
 'views' => 'resources/views/vendor/permissions/views',
@@ -97,18 +97,18 @@ $permission = Permission::create([
 ]);
 ```
 
-#Give Permission to Roles
+#### Give Permission to Roles
 ```
 // Create Role before set permission
 // $roles = [role_slug_or_id] ex: ['admin',1,2,'author']
 $permission->givePermissionToRoles( $roles );
 ```
-#Update permission roles
+#### Update permission roles
 ```
 $role_ids = [1,3,5]
 $permission->syncPermissionToRoles( $role_ids );
 ```
-#Delete permission roles
+#### Delete permission roles
 ```
 // Delete specific Roles
 $role_ids = [1,3,5];
@@ -127,7 +127,7 @@ $admin = Role::create([
 	'updated_at' => now(),
 ]);
 ```
-#Assign Permission
+#### Assign Permission
 ```
 $admin->assignPermissions([
     'browse',
@@ -137,12 +137,12 @@ $admin->assignPermissions([
     'delete'
 ]);
 ```
-#Update Permission
+#### Update Permission
 ```
 $permission_ids = [1,3,5]
 $admin->syncPermissions( $permission_ids );
 ```
-#Delete permission
+#### Delete permission
 ```
 // Delete specific Permissions
 $permission_ids = [1,3,5];
@@ -150,7 +150,7 @@ $admin->revokePermissions( $permission_ids );
 // Delete all roles for current roles
 $admin->revokePermissions();
 ```
-#Check Permission
+#### Check Permission
 ```
 $admin->hasPermission( $permission_slug );
 ```
@@ -165,12 +165,12 @@ $user->password = Hash::make('password');
 $user->save();
 $user->assignRoles('admin');
 ```
-#Assign Roles into existing user
+#### Assign Roles into existing user
 ```
 $user = User::find(1);
 $user->assignRoles('admin');
 ```
-#Assign Multiple roles
+#### Assign Multiple roles
 ```
 $user = User::find(1);
 // Use pipe(|)
@@ -185,12 +185,12 @@ $user->assignRoles('admin client,customer|write');
 $separators =  ',.| ';
 $user->assignRoles('admin client,customer|write', $separators);
 ```
-#Update Roles
+#### Update Roles
 ```
 $role_ids = [1,2,3];
 $user->syncRoles( $role_ids );
 ```
-#Delete Roles
+#### Delete Roles
 ```
 // Delete specific Roles for current User
 $role_ids = [1,3,5];
@@ -198,7 +198,7 @@ $user->revokeRoles( $role_ids );
 // Delete all roles for current user
 $user->revokeRoles();
 ```
-#Check Role
+#### Check Role
 ```
 $user->hasRole( $role_slug );
 ```
