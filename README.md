@@ -1,6 +1,8 @@
 # laravel-permission
 Laravel Multi Authentication
 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/2ZmhpYwrGNA/0.jpg)](https://www.youtube.com/watch?v=2ZmhpYwrGNA)
+
 ## Note : Before Install and use this package run below command
 Before Laravel version 6.0
 ```
