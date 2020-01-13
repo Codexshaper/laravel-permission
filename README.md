@@ -1,6 +1,8 @@
 # laravel-permission
 Laravel Multi Authentication
 
+Installation video : [click here](https://www.youtube.com/watch?v=2ZmhpYwrGNA) or click below image
+
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/2ZmhpYwrGNA/0.jpg)](https://www.youtube.com/watch?v=2ZmhpYwrGNA)
 
 ## Note : Before Install and use this package run below command
