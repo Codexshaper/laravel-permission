@@ -4,8 +4,8 @@ namespace CodexShaper\Permission;
 
 use CodexShaper\Permission\Commands\InstallPermission;
 use CodexShaper\Permission\Commands\InstallPermissionDemo;
-use CodexShaper\Permission\Commands\publishPermissionResources;
-use CodexShaper\Permission\Commands\publishPermissionViews;
+use CodexShaper\Permission\Commands\PublishPermissionResources;
+use CodexShaper\Permission\Commands\PublishPermissionViews;
 use CodexShaper\Permission\Http\Middleware\RoleMiddleware;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
