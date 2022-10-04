@@ -3,6 +3,7 @@
 use CodexShaper\Permission\Models\Role;
 use CodexShaper\Permission\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UsersSeeder extends Seeder
 {

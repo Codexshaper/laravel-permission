@@ -81,7 +81,7 @@ class PermissionServiceProvider extends ServiceProvider
                 __DIR__.'/../config/permission.php' => config_path('permission.php'),
             ],
             'permission.seeds' => [
-                __DIR__."/../database/seeds/" => database_path('seeds'),
+                __DIR__."/../database/seeds/" => database_path('seeders'),
             ],
             'permission.views' => [
                 __DIR__.'/../resources/views' => resource_path('views/vendor/permissions/views'),
