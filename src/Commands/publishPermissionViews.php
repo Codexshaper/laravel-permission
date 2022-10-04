@@ -4,7 +4,7 @@ namespace CodexShaper\Permission\Commands;
 use CodexShaper\Permission\PermissionServiceProvider;
 use Illuminate\Console\Command;
 
-class publishPermissionViews extends Command
+class PublishPermissionViews extends Command
 {
     /**
      * The console command name.
