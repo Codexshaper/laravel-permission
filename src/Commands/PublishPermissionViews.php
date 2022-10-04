@@ -12,7 +12,6 @@ class PublishPermissionViews extends Command
      * @var string
      */
      protected $name = 'permission:publish:views';
-    
     /**
      * The console command description.
      *
