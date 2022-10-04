@@ -11,6 +11,7 @@ class PublishPermissionResources extends Command
      *
      * @var string
      */
+    
      protected $name = 'permission:publish:resources';
     /**
      * The console command description.
