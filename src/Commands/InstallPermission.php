@@ -15,6 +15,7 @@ class InstallPermission extends Command
      * @var string
      */
      protected $name = 'permission:install';
+    
     /**
      * The console command description.
      *
