@@ -134,7 +134,7 @@ class PermissionServiceProvider extends ServiceProvider
     {
         $this->commands(InstallPermission::class);
         $this->commands(InstallPermissionDemo::class);
-        $this->commands(publishPermissionResources::class);
-        $this->commands(publishPermissionViews::class);
+        $this->commands(PublishPermissionResources::class);
+        $this->commands(PublishPermissionViews::class);
     }
 }
